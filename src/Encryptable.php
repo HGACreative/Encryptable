@@ -2,6 +2,8 @@
 
 namespace Hgacreative\Encryptable;
 
+use ErrorException;
+
 use Illuminate\Support\Facades\Crypt;
 
 /**
@@ -11,6 +13,20 @@ use Illuminate\Support\Facades\Crypt;
  */
 trait Encryptable
 {
+
+    /**
+     * Boot the trait and determine whether or not we have an encryptable
+     * property on the model to read from
+     *
+     * @return void
+     */
+    protected static function bootEncryptable()
+    {
+        if(!property_exists(new static, 'encryptable')) {
+            throw new ErrorException('$encryptable must be present on the model instance to use the Encryptable trait');
+        }
+    }
+
 	/**
 	 * Get and decrypt an attribute if required
 	 *
@@ -22,7 +38,7 @@ trait Encryptable
 		// get the original value of our attribute
         $value = parent::getAttribute($key);
 
-		return $this->isEncryptable($key) && $this->isNotNullValue($value)
+		return $this->isEncryptable($key) && $this->valueIsNotNull($value)
             ? Crypt::decrypt($value)
             : $value;
     }
@@ -38,7 +54,7 @@ trait Encryptable
     {
         return parent::setAttribute(
             $key,
-            $this->isEncryptable($key) && $this->isNotNullValue($value)
+            $this->isEncryptable($key) && $this->valueIsNotNull($value)
                 ? Crypt::encrypt($value)
                 : $value
         );
@@ -63,7 +79,7 @@ trait Encryptable
      * @param  mixed  $value
      * @return bool
      */
-    private function isNotNullValue($value)
+    private function valueIsNotNull($value)
     {
         return $value !== null;
     }
