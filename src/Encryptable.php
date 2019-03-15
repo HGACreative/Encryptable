@@ -27,12 +27,12 @@ trait Encryptable
         }
     }
 
-	/**
-	 * Get and decrypt an attribute if required
-	 *
-	 * @param  string  $key
-	 * @return mixed
-	 */
+    /**
+     * Get and decrypt an attribute if required
+     *
+     * @param  string  $key
+     * @return mixed
+     */
     public function getAttribute($key)
     {
 		// get the original value of our attribute
@@ -43,12 +43,11 @@ trait Encryptable
             : $value;
     }
 
-	/**
-	 * Set and encrypt an attribute if required
-	 *
-	 * @param  string  $key
-	 * @param  string  $value
-	 * @return mixed
+    /**
+     * Set and encrypt an attribute if required
+     * @param  string  $key
+     * @param  string  $value
+     * @return mixed
 	 */
     public function setAttribute($key, $value)
     {
