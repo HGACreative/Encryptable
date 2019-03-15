@@ -1,0 +1,22 @@
+{
+    "name": "hgacreative/encryptable",
+    "description": "A useful trait for Laravel models to leverage to encrypt/decrypt sensitive data on the fly",
+    "keywords": ["laravel", "hgacreative"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ian Austin",
+            "email": "Ian.Austin@hgacreative.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hgacreative\\Encryptable\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
