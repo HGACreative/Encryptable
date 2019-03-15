@@ -38,7 +38,7 @@ trait Encryptable
 		// get the original value of our attribute
         $value = parent::getAttribute($key);
 
-		return $this->isEncryptable($key) && $this->valueIsNotNull($value)
+        return $this->isEncryptable($key) && $this->valueIsNotNull($value)
             ? Crypt::decrypt($value)
             : $value;
     }
