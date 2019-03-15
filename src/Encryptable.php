@@ -48,7 +48,7 @@ trait Encryptable
      * @param  string  $key
      * @param  string  $value
      * @return mixed
-	 */
+     */
     public function setAttribute($key, $value)
     {
         return parent::setAttribute(
