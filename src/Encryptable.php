@@ -22,7 +22,7 @@ trait Encryptable
      */
     protected static function bootEncryptable()
     {
-        if(!property_exists(new static, 'encryptable')) {
+        if (!property_exists(new static, 'encryptable')) {
             throw new ErrorException('$encryptable must be present on the model instance to use the Encryptable trait');
         }
     }
@@ -35,7 +35,7 @@ trait Encryptable
      */
     public function getAttribute($key)
     {
-		// get the original value of our attribute
+        // get the original value of our attribute
         $value = parent::getAttribute($key);
 
         return $this->isEncryptable($key) && $this->valueIsNotNull($value)
